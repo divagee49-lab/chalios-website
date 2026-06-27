@@ -1,64 +1,402 @@
-<header class="hero">
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <h1>Tacos y Torta Chalios</h1>
-    <p>Authentic Mexican Flavor • Open 24/7 • Visalia, CA</p>
-    <a href="#menu" class="hero-btn">View Menu</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tacos y Torta Chalios – Visalia, CA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --red: #b30000;
+      --dark-red: #7a0000;
+      --gold: #f4c26b;
+      --bg: #fffaf4;
+      --card: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: #333;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      height: 70vh;
+      background: url('https://s3-media0.fl.yelpcdn.com/bphoto/o59EMSmfDqQnE2qpty4tUA/348s.jpg')
+        center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4),
+        rgba(123, 0, 0, 0.8)
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 700px;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      border: 2px solid #fff;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #fff;
+      color: var(--dark-red);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      color: var(--dark-red);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .section-sub {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    /* MENU */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .menu-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border-top: 4px solid var(--red);
+    }
+
+    .menu-name {
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 6px;
+      font-size: 1.05rem;
+    }
+
+    .menu-desc {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      background: #000;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      transition: 0.25s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    /* LOCATION */
+    .location-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.3fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .location-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .location-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--gold);
+    }
+
+    .location-card h3 {
+      margin-top: 0;
+      color: var(--dark-red);
+    }
+
+    .location-card p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      margin-top: 8px;
+    }
+
+    .map-frame {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      min-height: 260px;
+    }
+
+    /* REVIEW */
+    .review-card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px 18px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border-left: 4px solid var(--red);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .review-name {
+      font-weight: 700;
+      color: var(--dark-red);
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-red);
+      color: #fff;
+      text-align: center;
+      padding: 22px 15px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-title">Tacos y Torta Chalios</div>
+      <div class="hero-sub">Authentic Mexican flavor • Open 24/7 • Visalia, CA</div>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">View Menu</a>
+        <a href="#location" class="btn btn-outline">Find Us</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- MENU -->
+    <section id="menu">
+      <div class="section-title">Menu Highlights</div>
+      <div class="section-sub">
+        Some of the most popular dishes customers love at Tacos y Torta Chalios.
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="menu-name">Menudo</div>
+          <div class="menu-desc">
+            Traditional Mexican soup served hot and fresh — perfect any time of day or night.
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-name">Grilled Wet Burrito</div>
+          <div class="menu-desc">
+            Large burrito smothered in rich red sauce, grilled to perfection with melted cheese.
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-name">Pastor Tacos</div>
+          <div class="menu-desc">
+            Marinated pork with cilantro, onions, grilled peppers, and lemon wedges.
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-name">Mixed Molcajete</div>
+          <div class="menu-desc">
+            A huge shareable stone bowl filled with meats, cheese, peppers, and salsa.
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="menu-name">Micheladas</div>
+          <div class="menu-desc">
+            Chamoy & Tajín rim, shrimp, cucumber, tamarind straw — a customer favorite.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <div class="section-title">Photo Gallery</div>
+      <div class="section-sub">
+        Real photos of the food and flavors you’ll find at Tacos y Torta Chalios.
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/o59EMSmfDqQnE2qpty4tUA/348s.jpg" alt="Chalios food 1">
+        </div>
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/oHF5lIRmsac3VLgJO9E_1A/348s.jpg" alt="Chalios food 2">
+        </div>
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/eh5vV-3il4XYrHv6uDniuw/348s.jpg" alt="Chalios food 3">
+        </div>
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/mTiu9lvygE9ApP4I0Ab4Rg/348s.jpg" alt="Chalios food 4">
+        </div>
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/bEHoQdNk9suARs0-6JRT1w/348s.jpg" alt="Chalios food 5">
+        </div>
+        <div class="gallery-item">
+          <img src="https://s3-media0.fl.yelpcdn.com/bphoto/CYkxsILzfAJo6m3sSPlrMQ/348s.jpg" alt="Chalios food 6">
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section id="location">
+      <div class="section-title">Location & Hours</div>
+      <div class="section-sub">
+        Visit us in Visalia — open 24 hours, 7 days a week.
+      </div>
+
+      <div class="location-wrap">
+        <div class="location-card">
+          <h3>Visit Us</h3>
+          <p><strong>Address:</strong><br>
+            2401 W Caldwell Ave<br>
+            Visalia, CA 93277
+          </p>
+          <p><strong>Phone:</strong><br>
+            +1 (559) 624‑1987
+          </p>
+          <p><strong>Hours:</strong><br>
+            Open <strong>24 hours</strong> • 7 days a week
+          </p>
+          <span class="pill">Open 24/7</span>
+        </div>
+
+        <div class="map-frame">
+          <iframe
+            width="100%"
+            height="100%"
+            frameborder="0"
+            style="border:0"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD-EXAMPLE-KEY&q=2401+W+Caldwell+Ave+Visalia+CA">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEW -->
+    <section id="reviews">
+      <div class="section-title">Customer Review</div>
+      <div class="section-sub">
+        A recent review from a happy customer.
+      </div>
+
+      <div class="review-card">
+        <div class="review-name">Ryan C. – June 10, 2026</div>
+        “The michelada was easily the highlight — one of the best in the area. The tacos and
+        vampiro were flavorful, and the molcajete was huge. Service was slow due to understaffing,
+        but the food and drinks were excellent.”
+      </div>
+    </section>
   </div>
-</header>
 
-<style>
-.hero {
-  position: relative;
-  height: 70vh;
-  background: url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1400&q=80')
-    center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-}
-
-.hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(139, 0, 0, 0.55); /* dark red aesthetic overlay */
-}
-
-.hero-content {
-  position: relative;
-  text-align: center;
-  z-index: 2;
-}
-
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
-  font-weight: bold;
-}
-
-.hero-content p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-}
-
-.hero-btn {
-  background: #ffffff;
-  color: #8b0000;
-  padding: 12px 25px;
-  border-radius: 30px;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.2s;
-}
-
-.hero-btn:hover {
-  background: #f7f7f7;
-  transform: scale(1.05);
-}
-</style>
+  <footer>
+    Tacos y Torta Chalios • Visalia, CA • Open 24/7<br>
+    © 2026 All Rights Reserved
+  </footer>
+</body>
+</html>
